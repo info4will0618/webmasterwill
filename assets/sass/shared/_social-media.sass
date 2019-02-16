@@ -1,0 +1,93 @@
+
+/* Toggle Classes */
+
+.hide_social-media
+	display: none !important
+	transition: all .3s ease-in
+
+.flip_180degree
+	opacity: .8
+	transform: rotate(180deg)
+
+// .socialHandlesBright
+// 	opacity: 1 
+// 	color: black
+// 	z-index: 500
+// 	background: black
+	
+/* End Toggle Classes */
+
+.opacity_zero
+	opacity: 0
+
+#social-media_div
+	bottom: 0
+	z-index: 99
+	width: 100%
+	display: flex
+	padding: 10px
+	flex-wrap: wrap
+	position: fixed
+	justify-content: center
+	transition: all .3s ease-in
+	background: rgba(0,0,0, .9)
+
+@media screen and (max-width: 340px)
+	#social-handles
+		padding: 5px
+		margin: auto
+
+@media screen and (max-width: 320px)
+	#social-media_button-container
+		margin-bottom: 10px
+
+#social-media_div a
+	color: #fff
+	padding: 10px
+
+#social-media_div-2
+	display: inline-block
+
+.social-media_handles-i
+	transition: all .3s ease-in
+
+.social-icons
+	font-size: 32px
+
+.handle-icons
+	font-size: 20px
+
+// .social-media_handle-a
+// 	font-size: 16px
+
+.social-media_arrows
+	transition: all .3s ease-in
+
+#social-media_div a:hover
+	color: gold
+
+#verticle_social-media_arrow
+	display: none
+
+#social-handles
+	margin-left: auto
+
+@media screen and (min-width: 1000px)
+	#social-media_div
+		left: 1%
+		bottom: 35%
+		width: auto
+		display: block
+
+	#social-media_div a
+		display: block
+		padding: 10px 0px
+
+	.social-media_handles-a
+		text-align: center
+
+	// .social-media_handles-i
+	// 	margin-left: 7px
+
+	#horizontal_social-media_arrow
+		display: none !important

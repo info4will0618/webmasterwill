@@ -1,0 +1,3 @@
+<div id="blog-subscriber_container" class="blog-subscriber_container">
+	<?php include(MyHelpers::UrlContent('~/views/shared/components/_subscription_form.php')); ?>
+</div>

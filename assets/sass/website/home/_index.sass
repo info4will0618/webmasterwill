@@ -1,0 +1,85 @@
+
+/* STRUCTURE */
+
+#home-page
+	height: 100%
+	padding-top: 40px
+	margin: 0px auto
+
+#home-page_main
+	width: 90%
+	display: flex
+	margin: 0px auto
+	position: relative
+	padding-bottom: 35px
+	flex-direction: column
+	border-bottom: 2px solid #000
+	justify-content: space-between
+
+#hp_main-intro h1
+	text-align: center
+
+#hp_main-intro
+	width: 100%
+	margin-bottom: 20px
+
+#hp_intro-links a
+	width: 100%
+
+#hp_intro-links li:not(:last-child) a
+	margin-bottom: 10px
+
+#hp_intro-links li:first-child a
+	border: 1px solid #999
+
+#hp_intro-links li:first-child a:hover
+	// color: #690782
+	color: blue
+	
+#home-page_additional
+	display: flex
+	height: 100px
+
+#home-page_additional a
+	margin: auto
+	cursor: pointer
+
+@media screen and (min-width: 415px)
+	#site-logo
+		margin: 0px auto 20px auto
+
+@media screen and (min-width: 790px)
+	#hp_intro-links a
+		width: 90%
+		margin: 0px auto
+
+@media screen and (min-width: 1000px)
+	#home-page
+		padding: 0px
+
+	#home-page_main
+		height: 100vh
+		padding-bottom: 0
+
+	#home-page_main
+		justify-content: center
+
+	#hp_intro-links
+		width: 95%
+		display: flex
+		margin: 0px auto
+		justify-content: space-around
+
+	#hp_intro-links a
+		padding: 5px
+		border-bottom: 1px solid #690782
+
+	.additional-posts:first-child
+		margin-bottom: 5px
+
+	#home-page_section-main_div-3
+		height: 100px
+
+	#home-page_section-main_div-3 a
+		display: block
+

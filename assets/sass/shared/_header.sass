@@ -1,0 +1,159 @@
+
+.flip_180degre-menu
+	color: gold
+	transform: rotate(180deg)
+
+.flip_180degre-menu_o
+	transform: rotate(-180deg)
+
+#menu-w
+	transition: all .2s ease-in
+
+header
+	z-index: 10
+	float: left
+	width: 100%
+	position: fixed
+	background: #000
+
+#auth_cont
+	right: 0%
+	z-index: 300
+	display: flex
+	position: fixed
+	flex-direction: column
+
+#auth_cont a 
+	color: #fff
+	padding: 22px 10px
+	display: block
+
+#auth_cont a:hover
+	color: gold
+
+#members_cont
+	display: flex
+	flex-direction: column
+
+#auth-button_cont
+	opacity: 0
+	visibility: hidden
+	background: black
+	transition: all .3s ease-in
+
+.auth-icons
+	margin-right: 5px
+
+@media screen and (max-width: 500px)
+	#auth_cont
+		right: 2%
+		font-size: .8em
+		flex-direction: row
+
+@media screen and (min-width: 500px)
+	#auth_cont a 
+		padding: 20px
+
+	#auth_cont div
+		flex-direction: row
+
+/*==================================================================================================== DIV BUTTON */
+
+#header_nav-button_div 
+	width: 100%
+	display: block
+	position: fixed
+
+.menu_w
+	color: #fff
+	text-align: center
+	font-family: 'Rammetto One', Georgia
+
+#header_nav-button_div button
+	width: 100%
+	height: 60px
+	cursor: pointer
+	background: #000
+	// background: linear-gradient(to right, #666, #000, #666)
+	transition: .3s all ease-in
+	border-top: 1px solid #666
+	border-bottom: 1px solid #666
+
+#header_nav-button_div button:hover
+	color: gold
+
+/*==================================================================================================== End DIV BUTTON */
+
+#header_nav-menu_nav
+	opacity: 0
+	height: 0
+	margin-top: 60px
+	width: 100%
+	overflow: hidden
+	transition: all .3s ease .3s
+
+#header_nav-menu_nav ul
+	width: 100%
+
+#header_nav-menu_nav li
+	display: block
+	font-size: 16px
+	text-align: center
+	border-bottom: 1px solid #666
+
+#header_nav-menu_nav a
+	color: #fff
+	padding: 10px 0px
+	display: block
+	font-family: Comic Sans MS
+	transition: .2s all ease-in
+	background: rgba(1, 1, 1, .9)
+	//\background: linear-gradient(to right, #666, #000, #666)
+
+#header_nav-menu_nav a:hover
+	color: gold
+
+@media screen and (min-width: 810px)
+
+	header
+		position: fixed
+		height: 60px
+		// background: linear-gradient(to right, #666, #000, #666)
+
+	#header_nav-menu_nav a
+		padding: 12px 20px
+
+	/* ==================================================================================================== DIV BUTTON */
+
+	#header_nav-button_div 
+		display: none
+	
+	/* ==================================================================================================== End DIV BUTTON */
+
+	#header_nav-menu_nav
+		margin: 0
+		opacity: 1 !important
+		height: 60px !important
+
+	#header_nav-menu_nav
+		width: 100%
+		overflow: hidden
+
+	#header_nav-menu_ul
+		display: table
+
+	#header_nav-menu_nav li
+		float: left
+		border: none
+
+	#header_nav-menu_nav li:first-child
+		border-top: none
+
+	#header_nav-menu_nav a
+		background: none		
+
+	#header_nav-menu_nav ul
+		width: auto
+		margin: 0px auto
+
+
