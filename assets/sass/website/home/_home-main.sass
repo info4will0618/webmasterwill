@@ -1,65 +1,230 @@
 
 #site-logo 
-	width: 298.8px
-	height: 200px
+	width: 228.8px
+	height: 150px
 	display: block
-	margin: 0px auto
-	position: relative
+	margin: 0px auto 10px auto
 
 #site-logo img
 	width: 100%
 	height: 100%
-	top: 1000px
-	position: absolute
 
-#hp_main-intro h1
+#home-page_main-section h1
+	font-size: 2.1em !important
 	margin: 0px auto 0px 0px
 	font-family: 'Rammetto One', Times New Roman, serif
 
 .hero-quote
-	font-size: 1.0em
+	margin: 0px auto
 	text-align: center
-	margin-bottom: 25px
+	margin-bottom: 50px
+	font-family: "Times New Roman", Times, serif
 
-#hp_intro-links a
-	opacity: 0
-	padding: 5px
+.hero-quote h2
+	font-size: 1.8em
+	margin-top: 0px
+	margin-bottom: 10px
+
+.hero-quote h3
+	font-size: 1.1em
+	line-height: 30px
+	border-bottom: 1px solid black
+	padding-bottom: 10px
+	font-family: "Trebuchet MS", Helvetica, sans-serif
+
+.home-page_ul
+	margin: 0px auto
+	justify-content: space-around
+	flex-direction: column
+
+.home-page_ul li
+	padding-bottom: 25px
+	margin-bottom: 20px
+	text-align: center	
+	font-size: .9em
+	font-family: "Trebuchet MS", Helvetica, sans-serif
+
+
+.home-page_ul li:last-child
+	margin-bottom: 10px
+
+.home-page_icon_cont
+	margin-bottom: 20px
+
+.home-page_icon
+	font-size: 100px
+
+.home-consultation_container
+	margin: 0px auto
+
+.home-consultation
+	display: flex
+
+.home-consultation a
+	margin-bottom: 10px
+
+.home-consultation:hover
+	color: gold
+
+.home-consultation p
+	font-size: 20px
+	margin-right: 20px
+
+.home-consultation p:hover
+	color: gold
+	transition: all .2s ease-in
+
+.home-buttons
+	width: 100%
+
+.home-consultation
+	display: flex
 	text-align: center
-	display: inline-block
-	font-family: Georgia, serif
-	transition: all .3s ease-in
+	flex-direction: column
 
-#hp_intro-links a:hover
-	color: blue
-
-.intro_more-info
+.home-consultation
 	text-align: center
+	line-height: 32px
+	margin-bottom: 10px
 
-.intro_more-info 
+.home-consultation a
+	color: #fff
+	padding: 10px
 	display: block
+	width: 100%
+	transition: all .2s ease-in
+
+.home-consultation a:nth-child(1)
+	background-color: #FA5E5E
+
+.home-consultation a:nth-child(2)
+	background: #2E6CE9
+
+.action_icon
+	margin-right: 10px
+
+.home-consultation a:hover
+	color: gold
+
+.home-page_info h2
+	font-size: 28px
+
+.container_info
+	width: 300px
+	margin: 0px auto
 	cursor: pointer
-
-.intro_more-info span
-	display: block
-
-@media screen and (max-width: 1000px)
-	#hp_intro-links li a
-		border: 1px solid #999
-
-	#hp_intro-links li:first-child a
-		background: #F4F4F5
-
-	#hp_intro-links a:hover
-		color: blue
-		border: 1px solid blue
+	display: flex
+	text-align: center
+	flex-direction: column
 
 @media screen and (min-width: 360px)
-	#hp_main-intro h1
-		font-size: 32px
+	#home-page_main-section h1
+		font-size: 1.7em
 
-@media screen and (min-width: 415px)
-	#hp_main-intro h1
+@media screen and (min-width: 600px)
+	#home-page_main-section h1
 		font-size: 2.7em
+
+	.home-page_ul li
+		width: 70%
+		margin: 0px auto
+		font-size: 1.0em
+
+@media screen and (min-width: 620px)
+	.home-buttons
+		display: flex
+		margin-bottom: 20px
+
+	.home-consultation
+		margin: auto
+		flex-direction: row
+		width: 600px
+
+	.home-consultation a
+		flex-grow: 1
+		flex-basis: 50%
+		margin-bottom: 0
+
+	.home-consultation a:first-child
+		margin-right: 20px
+
+@media screen and (min-width: 1025px)
+	#site-logo 
+		width: 268.8px
+		height: 170px
+		margin-bottom: 0px
+
+	.hero-quote
+		width: 70%
+		margin-bottom: 30px
+		font-size: 1.0em
+
+	.hero-quote h2
+		font-size: 1.7em
+		margin-top: 0
+		margin-bottom: 10px
+
+	.hero-quote h3
+		font-size: 1.3em
+		border-bottom: 0
+
+	#home-page_main
+		height: 100vh
+		display: flex
+		padding-bottom: 0
+		flex-direction: column
+		justify-content: center
+
+	#home-page_main-section
+		flex-basis: 30%
+
+	.home-page_ul_container
+		flex-basis: 25%
+
+	.home-page_ul
+		margin: auto
+		flex-direction: row
+
+	.home-page_ul li
+		flex-basis: 28%
+		margin-bottom: 0px
+		padding-bottom: 0
+		border-bottom: 0
+		font-size: .9em
+
+	.home-page_ul_container
+		display: flex
+		margin: 0px auto 30px auto
+
+	.home-buttons
+		flex-basis: 5%
+
+	.home-consultation
+		width: 600px
+		margin: auto
+		flex-direction: row
+
+	.home-consultation a
+		flex-grow: 1
+		flex-basis: 50%
+		margin-bottom: 0
+
+	.home-consultation a:first-child
+		margin-right: 20px
+
+	.home-page_ul
+		display: flex
+	
+	#home-page
+		padding-top: 0px
+
+	.home-page_icon
+		font-size: 80px
+
+	.keep_reading 
+		padding-bottom: 0
+
+
 
 
 

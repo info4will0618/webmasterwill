@@ -84,6 +84,7 @@ var NavigationMenu = (function() {
 
 	var toggleNavMenu = function() {
 		if (navMenu.style.opacity === "1") {
+
 			w.classList.remove("flip_180degre-menu");
 			navMenu.style.opacity = "0";
 			w.style.color = "#fff";
@@ -93,6 +94,7 @@ var NavigationMenu = (function() {
 	    	w.style.color = "gold";
 	    	navMenu.style.opacity = "1";
 	    	navMenu.style.height = "318px";
+
 	    }
 	}
 
@@ -183,7 +185,7 @@ var SocialMediaMenu = (function() {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-module.exports = __webpack_require__(11);
+module.exports = __webpack_require__(9);
 
 
 /***/ }),
@@ -211,22 +213,20 @@ window.onload = __WEBPACK_IMPORTED_MODULE_0__modules_EventListeners__["a" /* def
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addEventListeners;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NavigationMenu__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AnimateFrontPage__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SocialMediaMenu__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ScrollTopFunction__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RequestSpecialFeatures__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__HomeimagesInfo__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__HideOnIdle__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__SubscribePop__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SocialMediaMenu__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ScrollTopFunction__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RequestSpecialFeatures__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__HomeimagesInfo__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__HideOnIdle__ = __webpack_require__(8);
+
+
+// import AnimateFrontPage from './AnimateFrontPage';
 
 
 
 
 
-
-
-
-
+// import SubscribePop from './SubscribePop';
 
 function addEventListeners() {
 
@@ -245,7 +245,7 @@ function addEventListeners() {
 	}
 
 	if (typeof(button) != 'undefined' && button != null) {
-		__WEBPACK_IMPORTED_MODULE_3__ScrollTopFunction__["a" /* default */].addListeners();
+		__WEBPACK_IMPORTED_MODULE_2__ScrollTopFunction__["a" /* default */].addListeners();
 	} 
 	
 	if (window.addEventListener) {
@@ -256,23 +256,31 @@ function addEventListeners() {
 			document.getElementById('members-button').addEventListener("touchstart", toggleAuthMenu);
 		}
 
-		__WEBPACK_IMPORTED_MODULE_6__HideOnIdle__["a" /* default */].addListeners();
+		__WEBPACK_IMPORTED_MODULE_5__HideOnIdle__["a" /* default */].addListeners();
 
 		__WEBPACK_IMPORTED_MODULE_0__NavigationMenu__["a" /* default */].addListeners();
 
 		if (document.getElementById("social-media_div") !== null) {
 
-			__WEBPACK_IMPORTED_MODULE_2__SocialMediaMenu__["a" /* default */].addListeners();
+			__WEBPACK_IMPORTED_MODULE_1__SocialMediaMenu__["a" /* default */].addListeners();
 
 		}
 
-		if (path === rootPath) {
+		if (path === rootPath ) {
 
-			__WEBPACK_IMPORTED_MODULE_1__AnimateFrontPage__["a" /* default */].animate();
 
-			document.getElementById('hp_link-1').addEventListener("click", goToLink);
-			document.getElementsByClassName('intro_more-info')[0].addEventListener("click", nextSection);
-			document.getElementById('hp_section-one_link').addEventListener("click", goToSectionTwo);
+			// var go = document.getElementsByClassName('testing')[0];
+
+			// go.style.display = "block";
+
+			
+		}
+
+		if (path === rootPath + '/web-designer-los-angeles') {
+
+			document.getElementById('learn-more').addEventListener("click", goToLink);
+			// document.getElementsByClassName('intro_more-info')[0].addEventListener("click", nextSection);
+			// document.getElementById('hp_section-one_link').addEventListener("click", goToSectionTwo);
 			
 		}
 		
@@ -280,13 +288,13 @@ function addEventListeners() {
 
 			// SubscribePop.setCookie('user_visited_blog', 'guest', '-1');
 
-			if (__WEBPACK_IMPORTED_MODULE_7__SubscribePop__["a" /* default */].checkCookie() === false) {
+			if (SubscribePop.checkCookie() === false) {
 
-				__WEBPACK_IMPORTED_MODULE_7__SubscribePop__["a" /* default */].setCookie('user_visited_blog', 'guest', '');
+				SubscribePop.setCookie('user_visited_blog', 'guest', '');
 
-				__WEBPACK_IMPORTED_MODULE_7__SubscribePop__["a" /* default */].showSubscribeForm();
+				SubscribePop.showSubscribeForm();
 
-				__WEBPACK_IMPORTED_MODULE_7__SubscribePop__["a" /* default */].addListeners();
+				SubscribePop.addListeners();
 
 				console.log('finished');
 
@@ -294,13 +302,13 @@ function addEventListeners() {
 				console.log('cant');
 			}
 
-
 		}
 
 		if (path === rootPath + '/request') {
 
-			__WEBPACK_IMPORTED_MODULE_4__RequestSpecialFeatures__["a" /* default */].addListeners();
+			__WEBPACK_IMPORTED_MODULE_3__RequestSpecialFeatures__["a" /* default */].addListeners();
 		}
+
 
 	} else if (window.attachEvent) { // Before IE9
 
@@ -308,6 +316,7 @@ function addEventListeners() {
 }
 
 function goToLink(e) {
+	e.preventDefault();
 	document.getElementById('home-page_content').scrollIntoView({behavior: "smooth", block: "start", inline: "start"});
 }
 
@@ -320,62 +329,26 @@ function goToSectionTwo(e) {
 	document.getElementById('hp_section-two').scrollIntoView({behavior: "smooth", block: "start", inline: "start"});
 }
 
-function displayInfoBox(e) {
-
-	e.preventDefault();
-
-	var displayBox = document.createElement('div');
-	var message = document.createElement('p');
-	var targetAnchor = e.target.parentNode;
-
-	targetAnchor.addEventListener("mouseleave", takeAwayBox);
-
-
-	if (e.target.tagName == "IMG") {
-
-		displayBox.classList.add('coverDiv');
-
-		if (targetAnchor.id == "home-page_img1") {
-			message.innerHTML = "I will help you design anything you want!";
-		}
-
-		if (targetAnchor.id == "home-page_img2") {
-			message.innerHTML = "you clicked on image 2!";
-		}
-
-		if (targetAnchor.id == "home-page_img3") {
-			message.innerHTML = "I use HTML, CSS, javascript, PHP, and MySQL and my main web development programming languages :O.";
-		}
-
-		if (targetAnchor.id == "home-page_img4") {
-			message.innerHTML = "I live in Korea Town and we can get in touch anywhere around Los Angeles. I know this is a picture of echo park";
-		}
-
-		displayBox.appendChild(message);
-
-		targetAnchor.appendChild(displayBox);
-
-	}
-
-	function takeAwayBox() {
-		targetAnchor.removeChild(displayBox);
-	}
-
-}
-
 function dropAuthMenu(e) {
 
 	e.preventDefault();
 
 	var authCont = document.getElementById('auth_cont');
 	var authButtonCont = document.getElementById('auth-button_cont');
+	var authButtons = document.getElementsByClassName('auth-buttons');
 
 	authButtonCont.style.visibility = "visible";
 	authButtonCont.style.opacity = "1";
+	authButtonCont.style.zIndex = "1";
+	// authButtons[0].style.zIndex = "1";
+	// authButtons[1].style.zIndex = "1";
 
 	authCont.addEventListener('mouseleave', function() {
 		authButtonCont.style.opacity= "0";
 		authButtonCont.style.visibility = "hidden";
+		authButtonCont.style.zIndex = "-100";
+		// authButtons[0].style.zIndex = "-100";
+		// authButtons[1].style.zIndex = "-100";
 	})
 
 }
@@ -386,103 +359,24 @@ function toggleAuthMenu(e) {
 
 	var authCont = document.getElementById('auth_cont');
 	var authButtonCont = document.getElementById('auth-button_cont');
+	var authButtons = document.getElementsByClassName('auth-buttons');
 
 	if (authButtonCont.style.visibility == "visible") {
 		authButtonCont.style.visibility = "hidden";
 		authButtonCont.style.opacity = "0";
+		// authButtons[0].style.zIndex = "1";
+		// authButtons[1].style.zIndex = "1";
 	} else {
 		authButtonCont.style.visibility = "visible";
 		authButtonCont.style.opacity = "1";
+		// authButtons[0].style.zIndex = "-1";
+		// authButtons[1].style.zIndex = "-1";
 	}
 
 }
 
 /***/ }),
 /* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-var AnimateFrontPage = (function() {
-
-	var logo = document.getElementById('wmw_logo');
-	var links = document.getElementsByClassName('intro-links');
-	var boxes = document.getElementsByClassName('hp-img_box');
-
-	var animate = function() {
-		animateLogo();
-	}
-
-	function animateLogo() {
-
-	    var pos = -1000;
-	    var int = 5;
-	    var id = setInterval(frame, 1);
-
-	    function frame() {
-	        if (pos == 0) {
-	            clearInterval(id);
-	            animateLinks();
-	        } else {
-	            pos = pos + int;
-	            logo.style.top = pos + 'px'; 
-	        }
-	    }
-
-	}
-
-	function animateLinks() {
-
-		var id = setInterval(frame, 100);
-		var pos = 0;
-		var num = 1;
-
-		function frame() {
-
-			if (pos > num) {
-	            clearInterval(id);
-	            animateBoxes();
-	        } else {
-	            for (var i = 0; i < links.length; i++) {
-	            	pos = pos + .1;
-					links[i].style.opacity = pos;
-				}
-	        }
-			
-		}
-	}
-
-	function animateBoxes() {
-
-		var int = 100;
-		var pos = -1000;
-		var posTwo = 1000;
-		var id = setInterval(frame, 70);
-
-		
-	    function frame() {
-	        if (pos == 0 && posTwo == 0) {
-	            clearInterval(id);
-	        } else {
-	            pos = pos + int;
-	            posTwo = posTwo - int;
-	            boxes[0].style.left = pos + 'px'; 
-	            boxes[1].style.right = pos + 'px'; 
-	        }
-	    }
-	}
-
-	return {
-		animate: animate
-	};
-
-})();
-
-/* harmony default export */ __webpack_exports__["a"] = (AnimateFrontPage);
-
-
-/***/ }),
-/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -534,7 +428,7 @@ var ScrollTopFunction = (function() {
 /* harmony default export */ __webpack_exports__["a"] = (ScrollTopFunction);
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -599,7 +493,7 @@ var RequestSpecialFeatures = (function() {
 /* harmony default export */ __webpack_exports__["a"] = (RequestSpecialFeatures);
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -673,7 +567,7 @@ var HomeimagesInfo = (function() {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -757,199 +651,7 @@ var HideOnIdle = (function() {
 
 
 /***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-var SubscribePop = (function() {
-
-	var popContainer = document.getElementById('subscriber-pop_cover');
-	var closeButton = document.getElementById('pop_close-button');
-	var subscribeForm = document.getElementById('subscribe-form_pop');
-	var popWrapper = document.getElementById('subscriber-pop');
-	var noThanksButton = document.getElementById('pop_no-thanks');
-	var innerContent = document.getElementById('subscribe-pop_inner-content');
-	var submitFormButton = document.getElementById('pop_submit-button');
-
-	function addListeners() {
-
-		// window.addEventListener("click", showSubscribeForm);
-		submitFormButton.addEventListener('click', verifyFormInput);
-		// Close Functions
-		noThanksButton.addEventListener('click', closeForm);
-		closeButton.addEventListener('click', closeForm);
-	}
-
-	function showSubscribeForm() {
-
-		setTimeout(function() {
-			popContainer.style.display = "flex";
-			popContainer.style.opacity = "1";
-		}, 100);
-
-	}
-
-	function verifyFormInput(e) {
-
-		e.preventDefault();
-
-		var userName = subscribeForm.elements[0].value;
-		var userEmail = subscribeForm.elements[1].value;
-		var userNameInput = document.getElementById('subscribe-pop_name');
-		var userEmailInput = document.getElementById('subscribe-pop_email')
-
-		var verifyName = validateName(userName);
-
-		if (verifyName === false) {
-			userNameInput.focus();
-			return false;
-		} 
-
-		var verifyEmail = validateEmail(userEmail);
-
-		if (verifyEmail === false) {
-			userEmailInput.focus();
-			return false;
-		}
-
-		submitForm(userName, userEmail);
-
-	}
-
-	function validateName(userName) {
-
-		var pattOne = /^[a-zA-Z]+$/;
-		var pattTwo = /^[a-zA-Z]{2}$/;
-
-		 if (userName === "") {
-		 	alert('The name cannot be blank. How would I know who you are? :O. -WebMasterWill');
-		 	return false;
-		 }
-
-		 if (pattOne.test(userName) === false) {
-		 	alert('The username can only contain letters. Thank you - WebmasterWill');
-		 	return false;
-		 }
-
-		 // if (pattTwo.test(userName) === false) {
-		 // 	alert('The name should at least start with two letters. Thank you :).');
-		 // }
-
-		 if (userName.length < 2 || userName.length > 30) {
-		 	alert('Oh no! Either the name was too short (less than two) or it was too long (no more than 30 characters). Please provide the desired length. Thank you! :). -WebMasterWill');
-			return false;
-		 }
-
-		 return true;
-
-	}
-
-
-	function validateEmail(userEmail) {
-
-		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
-		if (filter.test(userEmail) === false) {
-		 	alert('Please enter a valid email. Thank you! :). -WebMasterWill');
-		 	return false;
-		 }
-
-		 return true;
-
-	}
-
-	function submitForm(userName, userEmail) {
-
-		var subscribeRequest = new XMLHttpRequest();
-		subscribeRequest.open('POST', '/webmasterwill/subscribe/pop', true);
-		subscribeRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		subscribeRequest.onreadystatechange = function() {
-
-            if (subscribeRequest.readyState == 4 && subscribeRequest.status == 200) {
-
-            	if (subscribeRequest.responseText === "") {
-            		var thanks = document.createElement('div');
-					var message = document.createElement('p');
-
-					message.innerHTML = "Thanks for subscribing!";
-					message.innerHTML += " I have sent an email with a verification code.";
-					message.innerHTML += " Make sure you check and verify before you start my latest blog post";
-					message.innerHTML += " Thanks again!";
-					message.innerHTML += " This dialog is going to close in a couple of seconds...";
-					thanks.appendChild(message);
-
-					innerContent.remove();
-
-					popWrapper.appendChild(thanks);
-
-					setTimeout(function() {
-						popContainer.remove();
-					}, 30000);
-            	} else {
-					popContainer.remove();
-					alert(subscribeRequest.responseText);
-            	}
-
-            }
-        };
-
-        subscribeRequest.send('name=' + userName + '&email=' + userEmail);
-	}
-
-	function closeForm(e) {
-		e.preventDefault();
-		popContainer.remove();
-	}
-
-	function checkCookie() {
-
-	    var user = getCookie("user_visited_blog");
-
-	    if (user === "guest") {
-	        return true;
-	    } else {
-	       return false;
-	    }
-
-	}
-
-	function setCookie(cname, cvalue, exdays) {
-	    var d = new Date();
-	    // d.setTime(d.getTime() + (exdays*24*60*60*1000));
-	    // var expires = "expires="+ d.toUTCString();
-	    var expires = "";
-	    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";  
-	}
-
-	function getCookie(cname) {
-	    var name = cname + "=";
-	    var ca = document.cookie.split(';');
-	    for(var i = 0; i < ca.length; i++) {
-	        var c = ca[i];
-	        while (c.charAt(0) == ' ') {
-	            c = c.substring(1);
-	        }
-	        if (c.indexOf(name) == 0) {
-	            return c.substring(name.length, c.length);
-	        }
-	    }
-	    return "";
-	}
-
-	return {
-		addListeners: addListeners,
-		showSubscribeForm: showSubscribeForm,
-		setCookie: setCookie,
-		checkCookie: checkCookie
-	};
-
-})();
-
-/* harmony default export */ __webpack_exports__["a"] = (SubscribePop);
-
-/***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

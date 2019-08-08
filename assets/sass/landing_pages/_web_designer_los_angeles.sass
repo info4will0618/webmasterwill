@@ -1,0 +1,129 @@
+
+.landing-page_one-inner
+	display: flex
+	flex-direction: column
+
+.landing-page_intro-banner
+	margin: auto
+	width: 100%
+	text-align: center
+
+.landing-page_intro-banner h1
+	margin-bottom: 10px
+
+.landing-page_intro-banner h2
+	margin-bottom: 20px
+
+
+#img
+	width: 200px
+	margin: 0px auto 10px auto
+	display: block
+
+#learn-more
+	color: #fff
+	padding: 10px
+	// background: #2e6ce9
+	border: 1px solid #fff
+	display: inline-block
+
+.landing-page_sections
+	width: 100%
+
+.landing-page_section-one
+	display: flex
+	width: 100%
+	height: 100vh
+	background: url('imgs/me/me_one.jpg') no-repeat center center fixed
+	background-position: center
+	background-size: cover
+	// background: rgb(2,0,36)
+	// background: -moz-linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 32%)
+	// background: -webkit-linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 32%)
+	// background: linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 32%)
+	// filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#000000",GradientType=1)
+	color: #fff
+
+.landing-page_intro-banner
+	padding: 25px
+	background: rgba(0,0,0, .6)
+	border: 1px solid #222
+
+.landing-page_intro-desc p
+	color: #fff
+	margin-bottom: 20px
+
+.landing-page_section-two
+	color: #fff
+	background: url('imgs/me/me_one.jpg')
+	background-size: cover
+
+.landing-page_section-two p
+	color: #fff
+
+@media screen and (min-width: 1025px)
+	.landing-page_one-inner
+		display: flex
+		height: 100vh
+		flex-direction: row
+
+	.landing-page_section-one
+		height: 100%
+		background: black
+	
+	.landing-page_intro-banner
+		border: 0
+		padding: 0
+		width: 80%
+		background: none
+
+// Content Section
+
+@media screen and (min-width: 1025px)
+
+	.landing-page_content
+		width: 95%
+		height: 100%
+		margin: 0px auto
+
+	.landing-page_boxes
+		height: 100vh
+		display: flex
+		flex-direction: column
+		justify-content: center
+		border-bottom: 1px dashed black
+
+	.landing-page_box-one
+		flex-basis: 10%
+		display: flex
+
+	.landing-page_box-one h2
+		margin: auto
+		width: 80%
+		text-align: center
+
+	.landing-page_box-two
+		display: flex
+		flex-basis: 80%
+		justify-content: center
+
+	.landing-page_boxes-img
+		flex-basis: 40%
+		display: flex
+
+	.landing-page_boxes-content
+		flex-basis: 50%
+
+	.landing-page_boxes-content p
+		margin-bottom: 10px
+		text-align: left
+
+	.landing-page_boxes-content h3
+		margin-bottom: 10px
+
+	.landing-page_boxes-img figure
+		width: 70%
+		display: block
+		margin: auto
+
+	.content_readability

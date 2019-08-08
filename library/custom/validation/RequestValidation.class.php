@@ -1,6 +1,6 @@
 <?php
 
-class UserInputValidation {
+class RequestValidation {
 
 	public function validateName($name) {
 

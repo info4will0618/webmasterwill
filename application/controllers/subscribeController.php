@@ -1,16 +1,27 @@
 <?php
 
-class subscribeController extends Controller {   
+namespace WebMasterWill\Application\Controllers;
 
-	protected $dbHandler;  
+use \DrewM\MailChimp\MailChimp;
+use WebMasterWill\Library\Core\App;
+use WebMasterWill\Library\Core\Controller;
+use WebMasterWill\Library\Custom\Parsedown\Parsedown;
 
-	protected function init() {
-		$this->dbHandler = new DBHandler($this->dbCredentials);
-		$this->db = $this->dbHandler->connect();
+class SubscribeController extends Controller {   
+
+	protected $parseDown;
+	protected $list_id = '50e5b29e76';
+	protected $api_key = '6d8f0a7ac7b0f124ea1e963a74ab94c7-us3';
+
+	function __construct($model) {
+		parent::__construct();
+		$this->model = $model;	
+		global $cfg;
+        $this->cfg = $cfg;
 	}
 
 
-	public function index() {
+	public function subscribe() {
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subscribe'])) {
 
@@ -18,27 +29,27 @@ class subscribeController extends Controller {
 
 			$_SESSION['user-info'] = array();
 
-			$this->_model->setPostData($_POST['name'], $_POST['email']);
+			$this->model->setPostData($_POST['name'], $_POST['email']);
 
-			$this->_model->sanitizeUserInput();
+			$this->model->sanitizeUserInput();
 
-			$_SESSION['subscribe-errors'] = $this->_model->verifyUserInput();
+			$_SESSION['subscribe-errors'] = $this->model->verifyUserInput();
 
-			if (!empty($_SESSION['subscribe-errors']['name']) || !empty($_SESSION['subscribe-errors']['email'])) {
+			if (!empty($_SESSION['subscribe-errors'])) {
 
-		    	$_SESSION['user-info']['name'] = $this->_model->name;
+		    	$_SESSION['user-info']['name'] = $this->model->name;
 
-				$_SESSION['user-info']['email'] =  $this->_model->email;
+				$_SESSION['user-info']['email'] =  $this->model->email;
 
 				header('Location: ' . $this->cfg['site']['root'] . '/blog/#blog-subscriber_container');
 
 			} else {
 
-				$emailExists = $this->_model->checkEmailIsUnique();
+				$emailExists = $this->model->checkEmailIsUnique($_POST['email']);
 
 				if ($emailExists === true) {
 
-					$_SESSION['subscribe-errors']['user-exist'] = $this->_model->email;
+					$_SESSION['subscribe-errors']['user-exist'] = $this->model->email;
 
 					header('Location: ' . $this->cfg['site']['root'] . '/blog/#blog-subscriber_container');
 
@@ -46,7 +57,7 @@ class subscribeController extends Controller {
 
 					$verificationCode = md5(uniqid(rand()));
 
-					$userInfo = $this->_model->subscribeUser($verificationCode);
+					$userInfo = $this->model->subscribeUser($verificationCode);
 
 					$id = $userInfo['id'];
 
@@ -54,19 +65,15 @@ class subscribeController extends Controller {
 					
 					$id = $key;
 
-					$this->_model->sendVerificationEmail($this->_model->name, $this->_model->email, $id, $verificationCode);
+					$this->model->sendVerificationEmail($this->model->name, $this->model->email, $id, $verificationCode);
 
-					$this->_model->sendMeSubscriberEmail($this->_model->name, $this->_model->email);
+					$this->model->sendMeSubscriberEmail($this->model->name, $this->model->email);
 
-					$_SESSION['user-info']['name'] = $this->_model->name;
+					$_SESSION['user-info']['name'] = $this->model->name;
 
-					$_SESSION['user-info']['email'] = $this->_model->email;
+					$_SESSION['user-info']['email'] = $this->model->email;
 
-					$this->setViewPath(MyHelpers::UrlContent("~/views/blog/subscribed.php"));
-
-					$this->dbHandler->close();
-
-					return $this->view();
+					return view('blog/subscribed', ['cfg' => $this->cfg]);
 
 				}
 
@@ -80,21 +87,49 @@ class subscribeController extends Controller {
 
 	}
 
+	public function approveUser() {
+
+		if(isset($_GET['code'])) {
+
+			$code = $_GET['code'];
+
+			$verifiedEmail = $this->model->verifyUserCode($code);
+
+			if ($verifiedEmail && $verifiedEmail !== false) {
+
+				$this->model->mailChimpSubscribe($verifiedEmail, $this->list_id, $this->api_key);
+
+				$_SESSION['subscriber']['name'] = $this->model->name;
+
+				$_SESSION['subscriber']['email'] = $this->model->email;
+
+				return view('subscribe/verified', ['cfg' => $this->cfg]);
+
+			} else {
+				return view('parts/_404', ['cfg' => $this->cfg]);
+			}
+
+		} else {
+			return view('parts/_404', ['cfg' => $this->cfg]);
+		}
+
+	}
+
 	public function pop() {
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			$errors = [];
 
-			$this->_model->setPostData($_POST['name'], $_POST['email']);
+			$this->model->setPostData($_POST['name'], $_POST['email']);
 
-			$this->_model->sanitizeUserInput();
+			$this->model->sanitizeUserInput();
 
-			$errors = $this->_model->verifyUserInput();
+			$errors = $this->model->verifyUserInput();
 
 			if (!empty($errors)) {
 
-				$emailExists = $this->_model->checkEmailIsUnique();
+				$emailExists = $this->model->checkEmailIsUnique();
 
 				if ($emailExists === true) {
 
@@ -104,9 +139,9 @@ class subscribeController extends Controller {
 
 				$verificationCode = md5(uniqid(rand()));
 
-				$rowCount = $this->_model->subscribePopUser($verificationCode);
+				$rowCount = $this->model->subscribePopUser($verificationCode);
 				if ($rowCount > 0) {
-					$this->_model->sendVerificationEmail($this->_model->name, $this->_model->email, $id, $verificationCode);
+					$this->model->sendVerificationEmail($this->model->name, $this->model->email, $id, $verificationCode);
 
 					return "";
 				} else {
@@ -121,35 +156,5 @@ class subscribeController extends Controller {
 
 
 	}
-
-	public function approveUser() {
-
-		if(isset($_GET['code'])) {
-
-			$code = $_GET['code'];
-
-			$verified = $this->_model->verifyUserCode($code);
-
-			if ($verified === true) {
-
-				$_SESSION['subscriber']['name'] = $this->_model->name;
-
-				$_SESSION['subscriber']['email'] = $this->_model->email;
-
-				$this->setViewPath(MyHelpers::UrlContent("~/views/subscribe/approved.php"));
-
-				return $this->view();
-			} else {
-				$this->setViewPath(MyHelpers::UrlContent("~/views/shared/_404.php"));
-				return $this->view();
-			}
-
-		} else {
-			$this->setViewPath(MyHelpers::UrlContent("~/views/shared/_404.php"));
-			return $this->view();
-		}
-
-	}
-
 	
 }

@@ -33,7 +33,7 @@ spl_autoload_register(function($className) {
         $valid = file_exists($classFile = $rootPath . 'library' . DS . 'custom' . DS . 'database' . DS . $className . '.class.php');
     } 
     if(!$valid){
-        $valid = file_exists($classFile = $rootPath . 'library' . DS . 'custom' . DS . 'mail' . DS . $className . '.class.php');
+        $valid = file_exists($classFile = $rootPath . 'library' . DS . 'custom' . DS . 'mail' . DS . $className . '.php');
     } 
     if(!$valid){
         $valid = file_exists($classFile = $rootPath . 'library' . DS . 'custom' . DS . 'validation' . DS . $className . '.class.php');

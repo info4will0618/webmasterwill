@@ -1,0 +1,45 @@
+<div class="info-boxes">
+	<h3>
+		Social Media Integration
+	</h3>
+	<img src="<?php echo $cfg['site']['root']; ?>/public/dist/imgs/home_page/social_media.jpg">
+	<p>
+		Your website will be compatible with the most popular devices.
+	</p>
+</div>
+<div class="info-boxes">
+	<h3>
+		Email Functionality
+	</h3>
+	<img src="<?php echo $cfg['site']['root']; ?>/public/dist/imgs/home_page/email.jpg">
+	<p>
+		Send emails to multiple or single recipents. 
+	</p>
+</div>
+<div class="info-boxes">
+	<h3>
+		Custom Forms
+	</h3>
+	<img src="<?php echo $cfg['site']['root']; ?>/public/dist/imgs/home_page/form.jpg">
+	<p>
+		Collect any type of information from your visitors.
+	</p>
+</div>
+<div class="info-boxes">
+	<h3>
+		Browser Compatability
+	</h3>
+	<img src="<?php echo $cfg['site']['root']; ?>/public/dist/imgs/home_page/browser_compatability.png">
+	<p>
+		Hvae your website be viewed perfectly in the most popular browsers.
+	</p>
+</div>
+<div class="info-boxes">
+	<h3>
+		Security and Backup
+	</h3>
+	<img src="<?php echo $cfg['site']['root']; ?>/public/dist/imgs/home_page/security.jpg">
+	<p>
+		I will do my best to keep your website hacker proof and make sure it's always backed up.
+	</p>
+</div>

@@ -1,4 +1,3 @@
-<!-- <div id="blog-subscriber_container-inner"> -->
 <a href="" id="subscribe_top_img">
 	<img src="<?php echo $cfg['site']['root']; ?>/public/dist/imgs/components/webmasterwill_logo.gif">
 </a>
@@ -13,7 +12,6 @@
 	<img id="subscriber_img" src="<?php echo $cfg['site']['root']; ?>/public/dist/imgs/website/subscribe_to_succeed.jpg">
 	<form action="<?php echo $cfg['site']['root']; ?>/subscribe" method='POST' id="subscribe-form">
 		<div class="subscribe-form_input">  
-
 			<?php if(isset($_SESSION['subscribe-errors']['name'])): ?>
 				<p class="subscriber-error">
 					<?php echo $_SESSION['subscribe-errors']['name']; ?>
@@ -32,22 +30,22 @@
 				</p>
 			<?php endif; ?>
 
-	        <label for="name">Name:</label>
+	        <label for="name">Name</label>
 	   
 	        <input type='text' name='name' placeholder="First Name" required value="<?php if(isset($_SESSION['user-info']['name'])){ echo htmlentities($_SESSION['user-info']['name']);} ?>"/>  
 	    </div> 
 	    <div class="subscribe-form_input">
 	    	<p class="subscriber-error">
-	        	<?php if (isset($_SESSION['subscribe-errors']['email'])): ?>
+	        	<?php if (!empty($_SESSION['subscribe-errors']['email'])): ?>
 				<?php echo $_SESSION['subscribe-errors']['email'];  endif; ?>
 			</p> 
-	        <label for="email">Email:</label> 
-	        <input value="<?php if(isset($_SESSION['user-info']['email'])){ echo htmlentities($_SESSION['user-info']['email']);} ?> " type="email" name="email" placeholder="Email" required/>  
+	        <label for="email">Email</label> 
+	        <input value="<?php if(!empty($_SESSION['user-info']['email'])){ echo htmlentities($_SESSION['user-info']['email']);} ?> " type="email" name="email" placeholder="Email" required/>  
 	    </div> 
 	    <div id="subscribe-blog_button"> 
 	        <input type='submit' value='W' name="subscribe" /> 
-	        <input type='submit' value='Subscribe' name="subscribe" ></input>
-	        <!-- <input type='hidden' value='1' name='submitted' /> -->
+<!-- 	        <input type='submit' value='Subscribe' name="subscribe" ></input>
+ -->	        <!-- <input type='hidden' value='1' name='submitted' /> -->
 	    </div> 
 
 	    <?php unset($_SESSION['subscribe-errors']); 

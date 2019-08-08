@@ -14,6 +14,7 @@ var NavigationMenu = (function() {
 
 	var toggleNavMenu = function() {
 		if (navMenu.style.opacity === "1") {
+
 			w.classList.remove("flip_180degre-menu");
 			navMenu.style.opacity = "0";
 			w.style.color = "#fff";
@@ -23,6 +24,7 @@ var NavigationMenu = (function() {
 	    	w.style.color = "gold";
 	    	navMenu.style.opacity = "1";
 	    	navMenu.style.height = "318px";
+
 	    }
 	}
 

@@ -1,11 +1,20 @@
 <?php
 
-class blogController extends Controller {   
+namespace WebMasterWill\Application\Controllers;
+
+use Carbon\Carbon;
+use WebMasterWill\Library\Core\App;
+use WebMasterWill\Library\Core\Controller;
+use WebMasterWill\Library\Custom\Parsedown\Parsedown;
+
+class BlogController extends Controller {   
 
 	protected $parseDown;
+	public $timeElapse;
 
-	protected function init() {
-		$this->db= new DBHandler($this->cfg['db']);
+	function __construct($model) {
+		parent::__construct();
+		$this->model = $model;	
 		$this->parseDown = new Parsedown();
 	}
 
@@ -13,15 +22,23 @@ class blogController extends Controller {
 
 		$title = "WebMasterWill Blog";
 
-		$data = $this->_model->getMostRecentPosts();
+		if (!empty($_GET['cat_id'])) {
+			$categoryID = $_GET['cat_id'];
+		} else {
+			$categoryID = false;
+		}
+
+		$data = $this->model->getMostRecentPosts($categoryID);
 
 		$totalPages = $data['total_pages'];
 
 		$posts = $data['posts'];
 
+		$categories = $this->model->getCategories();
+
 		if (!empty($posts)) {
 
-			$this->parseDown->setSafeMode(true);
+			// $this->parseDown->setSafeMode(true);
 
 			foreach ($posts as $key => $value) {
 				$posts[$key]['content'] = $this->parseDown->text($posts[$key]['content']);
@@ -31,34 +48,61 @@ class blogController extends Controller {
 				$posts[$key]['tags'] = array_filter(explode(',', $posts[$key]['tags']));
 			}
 
-			$categories = $this->_model->getCategories();
-
-			$this->view->set('blog_posts', $posts);
-
-			$this->view->set('categories', $categories);
-
-			$this->view->set('total_pages', $totalPages);
-
-			$this->view->set('title', $title);
-
-			$this->db = $this->db->close();
-
-			return $this->view();
+			// $this->db = $this->db->close();
+			
+			return view('blog/index', ['title' => $title, 'blog_posts' => $posts, 'categories' => $categories, 'total_pages' => $totalPages, 'cfg' => $this->cfg]);
 
 		} else {
-			$this->setViewPath(MyHelpers::UrlContent("~/views/shared/_maintenance.php"));
-			$this->view->setTitle("WebMasterWill Maintenance");
-			return $this->view();
+			return view('blog/index', ['title' => $title, 'categories' => $categories, 'total_pages' => $totalPages, 'cfg' => $this->cfg]);
 		}
 
+	}
+
+	public function show() {
+
+		$id = $_GET['id'];
+
+		$categories = $this->model->getCategories();
+
+		$data['posts'] = $this->model->getSpecificPost($id);
+
+		$comments = $this->model->getComments($id);
+
+		foreach ($comments as &$comment) {
+
+			$dt = Carbon::parse($comment['date_created']);
+
+			$comment['date_created'] = $dt->diffForHumans();
+
+		}
+
+		$commentCount = count($comments);
+
+		$replies = $this->model->getReplies($id);
+
+		// $data['related_articles'] = $this->model->getRelatedArticles($keyword);
+
+		if (!empty($data)) {
+
+				$title = $data['posts']['title'] . " | WebMasterWill";
+
+				$data['posts']['content'] = $this->parseDown->text($data['posts']['content']);
+
+				$post = $data['posts'];
+
+				return view('blog/single', ['post' => $post, 'comments' => $comments, 'comment_count' => $commentCount, 'replies' => $replies, 'cfg' => $this->cfg]);
+
+			} else {
+				return view('parts/_404', ['cfg' => $this->cfg]);
+			}
 	}
 
 	public function post($keyword = false) {
 
 		if (empty($keyword)) {
 			$title = "WebMasterWill Posts Search";
-			$categories = $this->_model->getCategories();
-			$dates = $this->_model->getDates();
+			$categories = $this->model->getCategories();
+			$dates = $this->model->getDates();
 			$this->view->set('dates', $dates);
 			$this->view->set('categories', $categories);
 			$this->view->set('title', $title);
@@ -66,13 +110,13 @@ class blogController extends Controller {
 			return $this->view();
 		} else {
 
-			$data['posts'] = $this->_model->getSpecificPost($keyword);
+			$data['posts'] = $this->model->getSpecificPost($keyword);
 
-			$data['related_articles'] = $this->_model->getRelatedArticles($keyword);
+			$data['related_articles'] = $this->model->getRelatedArticles($keyword);
 
-			$comments = $this->_model->getComments($data['posts']['id']);
+			$comments = $this->model->getComments($data['posts']['id']);
 
-			$replies = $this->_model->getReplies($data['posts']['id']);
+			$replies = $this->model->getReplies($data['posts']['id']);
 
 			array_shift($data['related_articles']);
 
@@ -108,64 +152,76 @@ class blogController extends Controller {
 
 	}
 
-	public function category($keyword = false) {
+	public function category() {
 
-		if (empty($keyword)) {
-			$categories = $this->_model->getCategories();
-			$this->setViewPath(MyHelpers::UrlContent("~/views/blog/categories.php"));
-			$this->view->set('categories', $categories);
-			$this->view->setTitle("WebMasterWill Blog Categories");
-			return $this->view();
-		}
 
-		if (isset($_GET['page_num'])) {
-    		$page_num = $_GET['page_num'];
-	    } else {
-	        $page_num = 1;
-	    }
+		if (isset($_GET['id'])) {
 
-		$data = $this->_model->getPostsByCategory($keyword);
+    		$cat_id = $_GET['id'];
+	    
+	    	$data = $this->model->getPostsByCategory($cat_id);
 
-		$posts = $data['posts'];
+	    	$posts = $data['posts'];
 
-		$categories = $this->_model->getCategories();
+	    	$totalPages = $data['total_pages'];
 
-		if (!empty($posts)) {
+	    	$categories = $this->model->getCategories();
 
-			$title = "WebMasterWill Blog Category " . ucfirst($keyword);
-
-			$totalPages = $data['total_pages'];
-
-			$this->parseDown->setSafeMode(true);
-
-			foreach ($posts as $key => $value) {
+	    	if (!empty($posts)) {
+	    		foreach ($posts as $key => $value) {
 				$posts[$key]['content'] = $this->parseDown->text($posts[$key]['content']);
-			}
+				}
 
-			foreach ($posts as $key => $value) {
-				$posts[$key]['tags'] = explode(',', $posts[$key]['tags']);
-			}
+				foreach ($posts as $key => $value) {
+					$posts[$key]['tags'] = explode(',', $posts[$key]['tags']);
+				}
+	    	}
 
-			$categories = $this->_model->getCategories();
+	    	return view('blog/category', ['cfg' => $this->cfg, 'blog_posts' => $posts, 'categories' => $categories, 'total_pages' => $totalPages]);
 
-			$this->view->set('blog_posts', $posts);
+		} 
+		// if (isset($_GET['page_num'])) {
+  //   		$page_num = $_GET['page_num'];
+	 //    } else {
+	 //        $page_num = 1;
+	 //    }
 
-			$this->view->set('categories', $categories);
+		// $data = $this->model->getPostsByCategory($keyword);
 
-			$this->view->set('total_pages', $totalPages);
+		// $posts = $data['posts'];
 
-			$this->view->setTitle($title);
+		// $categories = $this->model->getCategories();
 
-			return $this->view();
+		// if (!empty($posts)) {
 
-		} else {
-			$_SESSION['no-category'] = 'I have not written any post for that category yet. Soon I will though so be weary :).';
-			$categories = $this->_model->getCategories();
-			$this->setViewPath(MyHelpers::UrlContent("~/views/blog/categories.php"));
-			$this->view->set('categories', $categories);
-			$this->view->setTitle("WebMasterWill Blog Categories");
-			return $this->view();
-			
+		// 	$title = "WebMasterWill Blog Category " . ucfirst($keyword);
+
+		// 	$totalPages = $data['total_pages'];
+
+		// 	$this->parseDown->setSafeMode(true);
+
+			// foreach ($posts as $key => $value) {
+			// 	$posts[$key]['content'] = $this->parseDown->text($posts[$key]['content']);
+			// }
+
+			// foreach ($posts as $key => $value) {
+			// 	$posts[$key]['tags'] = explode(',', $posts[$key]['tags']);
+			// }
+
+		// 	$categories = $this->model->getCategories();
+
+		// 	$this->view->set('blog_posts', $posts);
+
+		// 	$this->view->set('categories', $categories);
+
+		// 	$this->view->set('total_pages', $totalPages);
+
+		// 	$this->view->setTitle($title);
+
+		// 	return $this->view();
+
+		else {
+			return view('parts/_404', ['cfg' => $this->cfg]);
 		}
 	}
 
@@ -173,7 +229,7 @@ class blogController extends Controller {
 
 		if (empty($keyword)) {
 			$title = "WebMasterWill Blog Dates";
-			$dates = $this->_model->getDates();
+			$dates = $this->model->getDates();
 			$this->view->set('dates', $dates);
 			$this->view->set('title', $title);
 			return $this->view();
@@ -187,7 +243,7 @@ class blogController extends Controller {
 
 		$date[1] = date('Y-m-d H:i:s', $nextMonth);
 
-		$data = $this->_model->getPostsByDate($date);
+		$data = $this->model->getPostsByDate($date);
 
 		if (!empty($data)) {
 
@@ -217,7 +273,7 @@ class blogController extends Controller {
 
 			$this->view->set('date', $date);
 
-			$categories = $this->_model->getCategories();
+			$categories = $this->model->getCategories();
 
 			$this->view->set('blog_posts', $posts);
 
@@ -228,6 +284,7 @@ class blogController extends Controller {
 			$this->setViewPath(MyHelpers::UrlContent("~/views/blog/category.php"));
 
 			return $this->view();
+
 		} else {
 
 			$this->setViewPath(MyHelpers::UrlContent("~/views/shared/_404.php"));
@@ -241,7 +298,7 @@ class blogController extends Controller {
 	public function search() {
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blog-search_button'])) {
 			$user_input = $_POST['blog-search_user-input'];
-			$searchResults = $this->_model->search($user_input);
+			$searchResults = $this->model->search($user_input);
 			$this->view->set('searchResults', $searchResults);
 			$this->setViewPath(MyHelpers::UrlContent("~/views/shared/_404.php"));
 

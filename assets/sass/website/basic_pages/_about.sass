@@ -1,31 +1,56 @@
 
-// @media (max-width: 400px)
+#about-page
+
+#about-page_inner 
+	width: 90%
+	margin: 0px auto
 
 #about-page_inner h1
 	text-align: center
+	margin-bottom: 15px
 
 #about-page_inner p
-	width: 80%
-	margin: 0px auto 15px auto
-	text-align: center
+	margin-bottom: 10px
 
 #about-page_inner a
 	display: block
 	font-size: 20px
-	text-align: center
 
-#about-me_pic
-	width: 200px
-	height: 200px
-	display: block
-	margin: 15px auto
-	border-radius: 50%
+.about_me_container
+	margin-bottom: 20px
+
+.about_me_container h2
+	margin-bottom: 10px
+	text-decoration: underline
+
+.about-me_pic figure
+	margin: 0px auto 20px auto
+
+.about-me_pic figcaption
+	padding: 10px 0px
+	line-height: 30px
+	font-style: italic
+
+.about-me_real
+	text-align: right
+
+// RESUME SECTION
+
+#resume 
+	padding: 10px
+	border: 1px solid #999
+
 
 @media screen and (min-width: 500px)
-	#about-me_pic
+	.about-me_pic figure
+		display: block
 		width: 300px
-		height: 300px
+		height: 100%
 
-.korea-town_map
-	margin-top: 35px
+	.korea-town_map
+		margin-top: 35px
+
+@media screen and (min-width: 1025px)
+	#about-page_inner 
+		width: 80%
 

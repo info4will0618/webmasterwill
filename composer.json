@@ -1,0 +1,21 @@
+{
+    "name": "",
+    "authors": [
+        {
+            "name": "WebMasterWill/William",
+            "email": "info4will0618@gmail.com"
+        }
+    ],
+    "require": {
+        "stripe/stripe-php": "^6.34"
+    },
+    "autoload": {
+        "psr-4": {
+            "WebMasterWill\\Application\\": "application",
+            "WebMasterWill\\Library\\": "library"
+        }
+    },
+    "require-dev": {
+        "composer/composer": "^1.9"
+    }
+}

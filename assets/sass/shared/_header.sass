@@ -6,6 +6,22 @@
 .flip_180degre-menu_o
 	transform: rotate(-180deg)
 
+.call-to-action_cont
+	position: relative
+
+#call-to-action
+	right: 5%
+	top: 20px
+	color: #fff
+	z-index: 100
+	position: absolute
+
+#call-to-action:hover
+	color: gold
+
+#call-to-action span::after
+	content: 'Contact me'
+
 #menu-w
 	transition: all .2s ease-in
 
@@ -14,11 +30,11 @@ header
 	float: left
 	width: 100%
 	position: fixed
-	background: #000
+	background: linear-gradient(to right, #333, #000, #444)
 
 #auth_cont
 	right: 0%
-	z-index: 300
+	height: 0px
 	display: flex
 	position: fixed
 	flex-direction: column
@@ -38,8 +54,10 @@ header
 #auth-button_cont
 	opacity: 0
 	visibility: hidden
-	background: black
+	background: rgba(0,0,0, .8)
 	transition: all .3s ease-in
+
+#auth-button_cont a
 
 .auth-icons
 	margin-right: 5px
@@ -73,7 +91,7 @@ header
 	width: 100%
 	height: 60px
 	cursor: pointer
-	background: #000
+	background: linear-gradient(to right, #333, #000, #333)
 	// background: linear-gradient(to right, #666, #000, #666)
 	transition: .3s all ease-in
 	border-top: 1px solid #666
@@ -90,6 +108,7 @@ header
 	margin-top: 60px
 	width: 100%
 	overflow: hidden
+	border-bottom: 1px solid #999
 	transition: all .3s ease .3s
 
 #header_nav-menu_nav ul
@@ -105,10 +124,11 @@ header
 	color: #fff
 	padding: 10px 0px
 	display: block
-	font-family: Comic Sans MS
+	font-family: "Trebuchet MS", Helvetica, sans-serif
+	// font-family: Comic Sans MS
 	transition: .2s all ease-in
 	background: rgba(1, 1, 1, .9)
-	//\background: linear-gradient(to right, #666, #000, #666)
+	//background: linear-gradient(to right, #666, #000, #666)
 
 #header_nav-menu_nav a:hover
 	color: gold
@@ -117,7 +137,8 @@ header
 
 	header
 		position: fixed
-		height: 60px
+		height: 0px
+		background: linear-gradient(to right, #333, #000, #333)
 		// background: linear-gradient(to right, #666, #000, #666)
 
 	#header_nav-menu_nav a
@@ -125,9 +146,16 @@ header
 
 	/* ==================================================================================================== DIV BUTTON */
 
-	#header_nav-button_div 
-		display: none
-	
+	#header_nav-button_div
+		display: none 
+		// width: 200px
+		// position: absolute
+		// display: inline-block
+
+	#header_nav-button_div button
+		background: none
+		border: none
+
 	/* ==================================================================================================== End DIV BUTTON */
 
 	#header_nav-menu_nav
@@ -138,6 +166,7 @@ header
 	#header_nav-menu_nav
 		width: 100%
 		overflow: hidden
+		background: linear-gradient(to right, #333, #000, #333)
 
 	#header_nav-menu_ul
 		display: table
@@ -155,5 +184,8 @@ header
 	#header_nav-menu_nav ul
 		width: auto
 		margin: 0px auto
+
+	#call-to-action span::after
+		content: 'Free Advice!'
 
 

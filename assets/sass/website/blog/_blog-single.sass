@@ -3,13 +3,19 @@
 	text-align: center
 	padding-bottom: 5px
 	margin-bottom: 20px
-	border-bottom: 2px dashed black
+	border-bottom: 2px solid black
+
+.blog-single p
+	text-align: left
+	line-height: 38px
+	font-size: 18px
 
 #single-post_first-container h2, #single-post_first-container h3, #single-post_first-container ul, #single-post_first-container li
-	margin-bottom: 20px
+	margin-bottom: 10px
+	border-bottom: 1px solid #000
 
 #single-post_first-container p:not(:last-child)
-	margin-bottom: 20px
+	margin-bottom: 10px
 
 #single-post_first-container ul
 	padding-left: 30px
@@ -25,12 +31,13 @@
 		font-size: 18px
 
 .blog-single__mid-container
-	width: 55%
+	width: 100%
 	display: flex
 	flex-direction: column
 
 .single-post_meta
 	display: flex
+	padding-bottom: 5px
 	margin-bottom: 10px
 	border-bottom: 1px dashed black
 	justify-content: space-between
@@ -41,83 +48,16 @@
 .sinle-post_img
 	margin-bottom: 20px
 
+
 @media screen and (min-width: 750px)
 	.sinle-post_img
-		float: left
 		width: 50%
-		margin: 0
 		margin-right: 25px
 
 @media screen and (min-width: 1100px)
 	.sinle-post_img
 		width: 100%
-		float: none
-		margin: 0
 
-/* Comments */
-
-.add-comment_container
-	margin-bottom: 20px
-	background: rgba(0,0,0, .9)
-
-.add-comment_comment-contain
-	display: flex
-	flex-direction: column
-	border: 1px solid black
-
-.add-comment_form input
-	color: #fff
-	width: 100%
-	padding: 10px 0px
-	display: block
-	margin: 0px auto
-
-.add-comment_comment-contain textarea
-	padding: 10px
-
-/* Comments section */
-
-.comments_container h2
-	text-align: center
-	margin-bottom: 10px
-	border-bottom: 2px solid dashed
-
-/* End of comment section */
-
-.comment
-	margin-bottom: 20px
-	border: 1px solid black
-
-.comment-heading
-	color: #fff
-	display: flex
-	justify-content: space-between
-	padding: 10px 0px 10px 10px
-	background: rgba(0,0,0, .9)
-
-.comment-user
-	color: #fff
-
-.comment-date
-	color: gold
-	padding-right: 10px
-
-.comment-body
-	padding: 10px
-
-.comment
-
-.reply
-	padding: 0px 20px 20px 60px
-
-.reply-heading
-	color: #fff
-	padding: 10px 0px 10px 10px
-	background: rgba(0,0,0, .9)
-
-.reply-body
-	padding: 10px
-	border: 1px solid black
 
 /* Related Articles Section */
 
@@ -155,6 +95,20 @@
 
 @media screen and (min-width: 1100px)
 
+	.single_post-content
+		width: 65%
+
+	#blog-single__post-title
+		font-size: 2.2em
+
+	.single-post_meta
+		width: 70%
+		margin: 0px auto
+
+	.sinle-post_img
+		width: 50%
+		margin: 0px auto
+
 	#post_sidebar
 		flex-direction: row
 		justify-content: space-between
@@ -167,5 +121,8 @@
 	#blog-sidebar
 		// margin-top: 32px
 		flex-basis: 35%
+
+	.sp
+		color: red
 
 	// displaying flex through flex container

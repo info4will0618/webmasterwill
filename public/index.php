@@ -2,6 +2,13 @@
 
 // Ensure we have session
 
+require __DIR__ . '/../vendor/autoload.php';
+
+require __DIR__ . '/../library/core/bootstrap.php';
+
+use WebMasterWill\Library\Core\Router;
+use WebMasterWill\Library\Core\Request;
+
 if(session_id() === ""){
     session_start();
 }
@@ -10,6 +17,5 @@ define('DS', DIRECTORY_SEPARATOR);
 
 define('ROOT', dirname(dirname(__FILE__)));
 
-$route = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-
-require_once(ROOT . DS . 'library' . DS . 'bootstrap.php');
+Router::load('../application/routes.php')
+	->direct(Request::keys(), Request::method());

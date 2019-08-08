@@ -1,0 +1,115 @@
+.add-comment_container
+	border: 1px solid #222
+	background: linear-gradient(to right, #333, #000, #444)
+
+.add-comment_container p
+	color: #fff
+
+.add-comment_comment-contain
+	display: flex
+	color: #fff
+	flex-direction: column
+
+.add-comment_label
+	padding: 20px 0px
+
+.add-comment_label p
+	cursor: pointer
+	line-height: 28px
+	margin-bottom: 0px
+	text-align: center
+
+.add-comment_label p:nth-child(1)
+	font-size: 24px
+
+.add-comment_label p:nth-child(2)
+	font-size: 16px
+
+.add-comment_form input
+	color: #fff
+	width: 100%
+	padding: 10px 0px
+	display: block
+	margin: 0px auto
+
+.add-comment_comment-contain textarea
+	padding: 10px
+	// color: #fff
+	transition: all .3s ease-in 
+
+.add-comment_comment-contain textarea:focus
+
+
+/* Comments section */
+
+.comments_container h2
+	text-align: center
+	margin-bottom: 10px
+	border-bottom: 2px solid dashed
+
+/* End of comment section */
+
+.comment
+	margin-bottom: 20px
+	border: 1px solid #222
+
+.comment_inner
+	padding: 10px
+	position: relative
+
+.comment-heading
+	display: flex
+	padding: 10px 0px 10px 10px
+	justify-content: space-between
+	background: linear-gradient(to right, #333, #000, #444)
+
+.comment-heading a
+	color: gold
+
+.comment-user
+	color: gold
+
+.comment-user a
+	color: gold
+	cursor: pointer
+
+.comment-date
+	color: #fff
+	padding-right: 10px
+
+.comment-body
+	margin-bottom: 20px
+
+.comment-sent
+	display: block
+	width: 100%
+
+.comment-sent p
+	color: #fff
+	text-align: center
+	margin: 0px auto
+	font-family: 'Rammetto One', Georgia
+
+// .user-comment_functions-cont
+// 	position: relative
+
+// .user-comment_functions-cont
+// 	position: absolute
+// 	right: 0
+	// top: 0
+	// border: 1px solid black
+
+// .user-comment_functions div
+// 	padding: 15px
+// 	background: linear-gradient(to right, #333, #000, #444)
+
+// .user-comment_functions a
+// 	color: #fff
+
+@media screen and (min-width: 1100px)
+	.add-comment_container
+		width: 40%
+		transition: width .6s ease-out
+
+	.add-comment_container:hover
+		width: 60%

@@ -2,6 +2,7 @@
 #blog-index_h1
 	font-size: 28px
 	text-align: center
+	padding-bottom: 15px
 	margin-bottom: 15px
 	border-bottom: 2px solid black
 	font-family: 'Rammetto One', cursive
@@ -9,12 +10,14 @@
 #blog-index_container
 	height: 100%
 	float: left
+	margin-bottom: 100px
 
 #blog-categories
 
 #blog_categories-header
-	text-align: center
 	font-size: 16px
+	font-weight: 600
+	text-align: center
 	margin-bottom: 20px
 	padding-bottom: 5px
 	border-bottom: 1px dashed black
@@ -23,17 +26,16 @@
 	margin-bottom: 15px
 
 .post_container
-	padding: 15px
+	padding: 10px 15px
 	border: 1px solid #b3b3b3
 
 .post_container:not(:last-child)
 	margin-bottom: 15px
 
-.post-title
+.post-title 
+	font-size: 26px
+	line-height: 40px
 	margin-bottom: 10px
-
-.post-title a
-	font-size: 1.1em
 	font-family: Palatino, "Palatino LT STD", "Palatino Linotype", "Book Antiqua", Georgia, serif
 
 .post-meta_container
@@ -42,9 +44,10 @@
 	margin-bottom: 20px
 	justify-content: space-between
 
-.post-meta_container div
-	padding: 5px
+.post-meta_container 
 	border-bottom: 1px dashed black
+
+.post-meta_container div
 
 .post-img
 	width: 100%
@@ -58,18 +61,20 @@
 
 .post_content
 	margin-bottom: 10px
-	padding-bottom: 5px
 
 .post_content h2
+	margin: 10px 0px
+	line-height: 28px
 	font-size: 1.2rem
 
-.post_content p 
+.post_content p
 	text-align: left
 
 .tags a::after
 	content: "-"
 
 .tags
+	padding-top: 5px
 	border-top: 1px dashed black
 
 
@@ -96,18 +101,19 @@
 
 	#blog-index_h1
 		margin-bottom: 25px
-		font-size: 32px
+		font-size: 36px
 
 	#posts_container
 		width: 60%
+		min-height: 100vh
 		float: left
 		display: block
 
-	.post-title a
-		font-size: 32px
+	.post-title
+		font-size: 28px
 
 	#blog_categories-header
-		font-size: 16px
+		font-size: 18px
 
 	#categorized-categories
 		float: right

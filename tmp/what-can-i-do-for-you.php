@@ -2,10 +2,6 @@
 
 			<img src="<?php echo $cfg['site']['root']; ?>/public/dist/imgs/succeed.jpg">
 
-<!-- 			<p>
-				How well known is your brand or business?
-			</p>
- -->
 			<p>
 				 Are you wondering if you need a website for your business, services, or passion? 
 			</p>

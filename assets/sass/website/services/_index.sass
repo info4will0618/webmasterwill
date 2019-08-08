@@ -1,67 +1,58 @@
-
-/* Structure */
-
 #services-page
-	height: 100vh
-
-.services-intro
-	margin: 0px auto 30px auto
-
-.services-intro p
-	text-align: center
-
-#services-page_intro
-	padding-bottom: 10px
-	margin-bottom: 20px
-	text-align: center
-	border-bottom: 1px dashed #999
-
-#services-page_intro a
-	padding: 5px
-	display: inline-block
-	border: 1px solid #666
-
-#services_main-img
-	height: 300px
-	width: 400px
-	display: block
+	width: 90%
 	margin: 0px auto
+
+.services_headline
+	text-align: center
 
 #services-page h1
-
-#serv-imgs_con
-	width: 100%
-	margin: 0px auto
-
-.services-img
-	display: block
-	padding: 15px 0px
 	margin-bottom: 20px
+
+#services-page_inner p
+	margin-bottom: 10px
+
+.services_tag-line
+	text-align: center
+
+.service_box
+	padding: 25px
+	display: flex
+	margin-bottom: 20px
+	flex-direction: column
 	border: 1px solid #999
+	justify-content: space-between
 
-.services-img img
-	width: 10em
-	height: 10em
-	display: block
-	margin: 0px auto
-	border-radius: 50%
+.service_box div
+	
 
-.serv-imgs_desc
-	color: #690782
-	font-size: 1.2em
+.service_box p
+	text-align: left
+
+.service_box h3
 	text-align: center
-	margin-bottom: 20px
+	margin-bottom: 15px
+	text-decoration: underline
 
-#services-page h1
-	margin-bottom: 20px
+.service-box_img
+	width: 80%
+	margin: 0px auto
 
-@media screen and (min-width: 1000px)		
-	#serv-imgs_con
-		margin: 0
-		display: flex
-		justify-content: space-between
+.service-box_img img
+	height: 300px
 
-	.services-img
-		margin: 0
+@media screen and (min-width: 1025px)
+	#services-page_inner
 		width: 100%
-		flex-basis: 49%
+
+	.service_box_container
+		display: flex
+		flex-wrap: wrap
+		justify-content: flex-start
+
+	.service_box
+		flex-basis: 31%
+
+	.service_box:nth-child(3n+2)
+		margin: 0px 1% 20px 1%
+
+

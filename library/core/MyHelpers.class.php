@@ -242,14 +242,7 @@ class MyHelpers{
     }
 
     public static function camelCase($str) {
-        if (strpos($str, '-')) {
-            $str = explode('-', $str);
-            $str[1] = ucfirst($str[1]);
-            $str = join($str);
-            return $str;
-        } else {
-            return $str;
-        }
-
+       $camelCase = lcfirst(join(array_map('ucfirst', explode('-', $str))));
+       return $str;
     }
 }
